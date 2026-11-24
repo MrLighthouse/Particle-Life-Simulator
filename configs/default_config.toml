@@ -1,0 +1,6 @@
+[Simulation]
+num_particles = 100
+num_types = 4
+seed = 123456789
+
+[Interaciton]
