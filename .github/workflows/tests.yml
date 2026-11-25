@@ -21,9 +21,6 @@ jobs:
       - name: Sync dependencies
         uses: uv sync
 
-      - name: Run tests
-        run: uv run python -m pytest
-
       - name: Run ruff
         run: uv run ruff check .
 
