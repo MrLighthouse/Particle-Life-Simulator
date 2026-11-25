@@ -8,8 +8,12 @@ permissions:
   contents: read
 
 jobs:
-  pytest:
-    runs-on: ubuntu-latest
+  checks:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.12", "3.13", "3.14"]
 
     steps:
       - name: Check out repository
@@ -17,9 +21,11 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v10.0.0
+        with:
+          python-version: ${{matrix.python}}
 
       - name: Sync dependencies
-        uses: uv sync
+        run: uv sync
 
       - name: Run ruff
         run: uv run ruff check .
